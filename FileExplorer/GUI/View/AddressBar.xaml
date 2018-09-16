@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="FileExplorer.GUI.View.AddressBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FileExplorer"
+             xmlns:VM="clr-namespace:FileExplorer.GUI.ViewModel"
+             xmlns:Tc="clr-namespace:FileExplorer.GUI.Themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+    <UserControl.DataContext>
+        <VM:AddressBarViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Background>
+        <SolidColorBrush Opacity="1" Color="{Binding CurrentTheme.Background}"/>
+    </UserControl.Background>
+    <Grid x:Name="AddressBarLayout">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.75*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="CurAddress" HorizontalAlignment="Stretch" Text="{Binding CurrentFolderPath}" Grid.Column="0"/>
+        <Button HorizontalAlignment="Stretch" Content="GoTo" Command="{Binding GoToCommand}"  Grid.Column="1" CommandParameter="{Binding CurrentFolderPath}"/>
+    </Grid>
+</UserControl>
