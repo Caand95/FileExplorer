@@ -17,22 +17,20 @@ namespace FileExplorer.GUI.ViewModel
 
         public string CurrentFolderPath { get { return this._currentFolderPath; } set { this._currentFolderPath = value; /*OnPropertyChanged("CurrentFolder");*/ } }
         public FileController Ctrler;
-        public CurrentFolderManager CurFolMan;
         public DelegateCommand GoToCommand { get; set; }
 
         public AddressBarViewModel()
         {
-            CurFolMan = new CurrentFolderManager();
-            Ctrler = new FileController("Win");
+            Ctrler = new FileController("win");
             GoToCommand = new DelegateCommand(GoTo);
-            this._currentFolderPath = CurFolMan.CurrentFolderPath;
+            this._currentFolderPath = CurrentFolderManager.CurrentFolderPath;
         }
 
         private void GoTo(object obj)
         {
             if(obj != null)
                 this._currentFolderPath = obj.ToString();
-            CurFolMan.SetFolder(this._currentFolderPath);
+            CurrentFolderManager.SetFolder(this._currentFolderPath);
         }
     }
 }

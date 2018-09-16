@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileExplorer.GUI.Themes;
+using FileExplorer.Logic.FileManager;
 using FileExplorer.Logic.FileManager.Item;
 
 namespace FileExplorer.GUI.ViewModel
@@ -25,7 +26,7 @@ namespace FileExplorer.GUI.ViewModel
             ThemeChanger.SetDefaultTheme();
             Theme = ThemeChanger.CurrentTheme;
             Ctrler = new Logic.FileManager.FileController("Win");
-            Itemlist =  new ObservableCollection<Item>(Ctrler.GetFolderContents(@"C:\ccfs"));
+            Itemlist =  new ObservableCollection<Item>(Ctrler.GetFolderContents(CurrentFolderManager.CurrentFolderPath));
             Theme.ThemeChanged += Theme_ThemeChanged;
         }
 

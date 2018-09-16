@@ -8,35 +8,37 @@ using FileExplorer.Logic.FileManager;
 
 namespace FileExplorer.Logic.FileManager
 {
-    public class CurrentFolderManager
+    public static class CurrentFolderManager
     {
         //Attributes
-        internal string _currentFolderpath;
-        internal List<Item.Item> _folderContent;
-        internal FileController fc;
+        internal static string _currentFolderpath;
+        internal static List<Item.Item> _folderContent;
+        internal static FileController fc = new FileController("win");
         //Properties
-        internal string CurrentFolderPath { get { return this._currentFolderpath; } set { this._currentFolderpath = value; OnPropertyChanged(); } }
-        internal List<Item.Item> FolderContent { get { return this._folderContent; } set { this._folderContent = value; OnPropertyChanged(); } }
+        internal static string CurrentFolderPath { get { return _currentFolderpath; } set { _currentFolderpath = value; OnPropertyChanged(); } }
+        internal static List<Item.Item> FolderContent { get { return _folderContent; } set { _folderContent = value; OnPropertyChanged(); } }
 
         //EventHandlers
-        internal event EventHandler PropertyChanged;
+        internal static  event EventHandler PropertyChanged;
 
-        public void OnPropertyChanged()
+        public static  void OnPropertyChanged()
         {
-            PropertyChanged?.Invoke(this, new EventArgs());
+            PropertyChanged?.Invoke(new object(), new EventArgs());
         }
 
-
-
+        public static void GetDefaultPath()
+        {
+            CurrentFolderPath = "C:/ccfs";
+        }
         //Methods
-        public void GetContent(string folderPath)
+        public static void GetContent(string folderPath)
         {
-            this.FolderContent = fc.GetFolderContents(folderPath);
+            FolderContent = fc.GetFolderContents(folderPath);
         }
-        public void SetFolder(string folderPath)
+        public static void SetFolder(string folderPath)
         {
-            this.GetContent(folderPath);
-            this.CurrentFolderPath = folderPath;
+            GetContent(folderPath);
+            CurrentFolderPath = folderPath;
         }
 
         //public string Open(Item.Item item)

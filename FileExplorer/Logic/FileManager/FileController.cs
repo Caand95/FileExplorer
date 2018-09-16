@@ -11,6 +11,7 @@ namespace FileExplorer.Logic.FileManager
         Interfaces.IFileManager man;
         public FileController(string fileSystem)
         {
+            CurrentFolderManager.GetDefaultPath();
             switch (fileSystem.ToLower())
             {
                 case "win":
