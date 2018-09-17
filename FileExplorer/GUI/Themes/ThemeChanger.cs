@@ -26,7 +26,8 @@ namespace FileExplorer.GUI.Themes
         public static void SetDefaultTheme()
         {
             if (CurrentTheme == null)
-                CurrentTheme = new Theme("DarkMode", new byte[] { 0, 0, 0, 255 }, false, true);
+                CurrentTheme = new Theme();
+                //CurrentTheme = new Theme("DarkMode", new byte[] { 0, 0, 0, 255 }, false, true);
             ThemeChangerCommand = new DelegateCommand(ToggleTheme);
             CurrentTheme.ThemeChanged += CurrentTheme_ThemeChanged; 
         }
